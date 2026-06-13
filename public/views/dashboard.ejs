@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+    <link rel="stylesheet" href="css/student-dashboard.css">
+    <link rel="stylesheet" href="css/helper.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Dashboard</h2>
+<span id="matno" style="display:none;"><%= matric_no %></span>
+        <p>Welcome, <span id="studentName"><%= username %>!</span></p>
+        <p id="status"><%= already_marked ? "Attendance already marked ✅" : "Attendance not marked" %></p>
+<button class="markattendace" <%= already_marked ? "disabled" : "" %>>
+            <%= already_marked ? "Attendance Marked" : "Mark Attendance" %>
+        </button>
+        <p id="spacing margin-btm-10px"></p>
+   <form action="/api/authn/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+    </div>
+
+
+
+<script>
+        document.querySelector('.markattendace').addEventListener('click', async function() {
+
+const response = await fetch("/api/authn/mark-student", 
+            {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ matric_no:document.querySelector("#matno").innerText}),
+            credentials: "include"
+        })
+
+        const initResponse = await response.json()
+
+
+            document.getElementById('status').innerText = "Attendance marked ✅";
+            this.style.backgroundColor="darkgreen"
+            this.disabled = true
+            this.innerText = "Attendance Marked"
+        });
+    </script>
+
+</body>
+</html>

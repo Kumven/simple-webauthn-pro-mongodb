@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+    <link rel="stylesheet" href="css/helper.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script defer src="js/admin-dashboard.js"></script>
+</head>
+<body>
+        <span id="hidden" hidden>
+            <%= JSON.stringify(attendance); %>
+        </span>
+        <h2>Admin Dashboard</h2>
+        <div class="top-bar">
+            <button class="active">Registered</button>
+            <button>Marked</button>
+        </div>
+        <div class="all-student-data" id="reg-tab">
+
+            <h3 class="margin-btm-10px margin-top-10px align-center">Registered Students</h3>
+
+            <div class="filter-bar">
+                <label for="consistency-filter">Consistency:</label>
+                <select id="consistency-filter">
+                    <option value="all">All</option>
+                    <option value="high">Highly Consistent (≥70%)</option>
+                    <option value="moderate">Moderately Consistent (40–70%)</option>
+                    <option value="low">Inconsistent (&lt;40%)</option>
+                    <option value="never">Never Attended</option>
+                </select>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="attendance-chart"></canvas>
+            </div>
+
+            <div id="students-list">
+                <% students.forEach(student => { %>
+                    <div class="student-info" data-matric="<%= student.matric_no %>">
+                        <img src="../imgs/user.jpg">
+                        <div class="student-data">
+                            <div class="texts">
+                                <p>Name: <%= student.name %> &nbsp;</p>
+                                <p>Matric No: <%= student.matric_no %></p>
+                            </div>
+                            <div class="times-attended">
+                                <p>Times attended: 0</p>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <p class="consistency-pct">0%</p>
+                            <p class="consistency-label">N/A</p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div>
+
+
+        
+        <div class="all-student-data display-none" id="marked-tab">
+            <h3 class="margin-btm-10px margin-top-10px align-center">Marked Students</h3>
+            <h3 class="align-right">Choose Date</h3>
+            <select id="dates" class="align-right margin-btm-10px">
+                <option value="">-- Select a Date --</option>
+            </select>
+            <span id="some-date-data"></span>
+
+        </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.display-none {
+    display: none;
+}
+
+.align-right {
+    align-self: flex-end;
+}
+.align-center{
+    align-self: center;
+}
+.margin-btm-10px {
+    margin-bottom: 10px;
+}
+.margin-top-10px {
+    margin-top: 10px;
+}

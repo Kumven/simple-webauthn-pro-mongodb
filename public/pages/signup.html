@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/@simplewebauthn/browser/dist/bundle/index.umd.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+    <script defer src="js/signup.js"></script>
+</head>
+<body>
+    <div class="cover display-none">
+        <div id="spinner" class="spinner"></div>
+    </div>
+    <div class="container">
+        <h2>Student Signup</h2>
+        <form method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" value="William Smith" required>
+
+            <label for="matric">Matric Number:</label>
+            <input type="text" id="matric" name="matric-no" value="A123456" required>
+
+            <label for="fingerprint">Fingerprint Authentication:</label>
+            <button type="submit" id="signupBtn">Register</button>
+            
+            <p id="text"></p>
+        </form>
+        
+        <p>Already registered? 
+            <a href="/login">Login</a>
+        </p>
+        <p><a href="/admin-login">Admin Login</a></p>
+    </div>
+</body>
+</html>
